@@ -13,7 +13,6 @@ public class Test01 {
 
     @Test
     public void changeKeyValue(){
-        System.setProperty("webdriver.gecko.driver","C:\\Geco\\geckodriver.exe");
         WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get("http://testbetaadoric.onix.ua/tabs3.html");

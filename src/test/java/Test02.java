@@ -14,43 +14,41 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test02 {
 
-
+    private String url = "http://testbetaadoric.onix.ua/tabs3.html";
     @Test
     public void fillOutForm() {
-        System.setProperty("webdriver.gecko.driver", "C:\\Geco\\geckodriver.exe");
         WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get("http://testbetaadoric.onix.ua/tabs3.html");
 
-        Wait<WebDriver> wait = new WebDriverWait(driver,60,1000).withMessage("Element was not found");
+        Wait<WebDriver> wait = new WebDriverWait(driver,30,1000).withMessage("Element was not found");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("test_third_lb")));
         System.out.println("Element has been find - test_third_lb");
 
         //fill out form
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.name("FName")));
-        element.clear();
-        element.sendKeys("Max");
-        element = driver.findElement(By.name("LName"));
-        element.clear();
-        element.sendKeys("Bond");
-        element = driver.findElement(By.name("Email"));
-        element.clear();
-        element.sendKeys("maxbond@email.com");
-        element = driver.findElement(By.name("Age"));
-        element.clear();
-        element.sendKeys("18");
-        element = driver.findElement(By.name("Phone"));
-        element.clear();
-        element.sendKeys("0661234567");
-        element = driver.findElement(By.name("Url"));
-        element.clear();
-        element.sendKeys("http://testbetaadoric.onix.ua/tabs3.html");
+        WebElement elementName = wait.until(ExpectedConditions.elementToBeClickable(By.name("FName")));
+        elementName.clear();
+        elementName.sendKeys("Max");
+        WebElement elementLastName = driver.findElement(By.name("LName"));
+        elementLastName.clear();
+        elementLastName.sendKeys("Bond");
+        WebElement elementEmail = driver.findElement(By.name("Email"));
+        elementEmail.clear();
+        elementEmail.sendKeys("maxbond@email.com");
+        WebElement elementAge = driver.findElement(By.name("Age"));
+        elementAge.clear();
+        elementAge.sendKeys("18");
+        WebElement elementPhone = driver.findElement(By.name("Phone"));
+        elementPhone.clear();
+        elementPhone.sendKeys("0661234567");
+        WebElement elementUrl = driver.findElement(By.name("Url"));
+        elementUrl.clear();
+        elementUrl.sendKeys(url);
         //click button
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        element = driver.findElement(By.cssSelector(".element-form-input"));
-        element.click();
+        WebElement elementButtonSubmit = driver.findElement(By.cssSelector(".element-form-input"));
+        elementButtonSubmit.click();
 
-        driver.quit();
+//        driver.quit();
         System.out.println("program closed");
     }
 }
